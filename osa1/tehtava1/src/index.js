@@ -12,9 +12,9 @@ const Otsikko = (props) => {
 const Sisalto = (props) => {
     return(
         <div>
-            <p><Osa osa={props.osa1} tehtavat={props.tehtavat1} /></p>
-            <p><Osa osa={props.osa2} tehtavat={props.tehtavat2} /></p>
-            <p><Osa osa={props.osa3} tehtavat={props.tehtavat3} /></p>
+            <p><Osa osa={props.osat[0].nimi} tehtavat={props.osat[0].tehtavia} /></p>
+            <p><Osa osa={props.osat[1].nimi} tehtavat={props.osat[1].tehtavia} /></p>
+            <p><Osa osa={props.osat[2].nimi} tehtavat={props.osat[2].tehtavia} /></p>
         </div>
     )
 }
@@ -30,33 +30,35 @@ const Osa = (props) => {
 const Yhteensa = (props) => {
     return(
         <div>
-            <p>Yhteensa {props.t1+ props.t2 + props.t3} tehtavaa</p>
+            <p>Yhteensa {props.osat[0].tehtavia + props.osat[1].tehtavia + props.osat[2].tehtavia} tehtavaa</p>
         </div>
     )
 }
 
 const App = () => {
-    const kurssi = 'Half Stack -sovelluskehitys'
-    const osa1 = {
-        nimi: 'Reactin perusteet',
-        tehtavia: 10
-    } 
-    const osa2 = {
-        nimi: 'Tiedonvälitys propseilla',
-        tehtavia: 7
+    const kurssi = { 
+        nimi: 'Half Stack -sovelluskehitys',
+        osat: [
+        {
+          nimi: 'Reactin perusteet',
+          tehtavia: 10
+        },
+        {
+          nimi: 'Tiedonvälitys propseilla',
+          tehtavia: 7
+        },
+        {
+          nimi: 'Komponenttien tila',
+          tehtavia: 14
+        }
+      ]
     }
 
-    const osa3 = {
-        nimi: 'Komponenttien tila',
-        tehtavia: 14
-    }
     return (
         <div>
-        <Otsikko otsikko={kurssi} />
-        <Sisalto osa1={osa1.nimi} tehtavat1={osa1.tehtavia} 
-        osa2={osa2.nimi} tehtavat2={osa2.tehtavia} 
-        osa3={osa3.nimi} tehtavat3={osa2.tehtavia} />     
-        <Yhteensa t1={osa1.tehtavia} t2={osa2.tehtavia} t3={osa3.tehtavia} />
+        <Otsikko otsikko={kurssi.nimi} />
+        <Sisalto osat={kurssi.osat} />
+        <Yhteensa osat={kurssi.osat} />        
         </div>
     )
 }
