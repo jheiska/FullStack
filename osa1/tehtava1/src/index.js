@@ -12,6 +12,16 @@ const Otsikko = (props) => {
 const Sisalto = (props) => {
     return(
         <div>
+            <p><Osa osa={props.osa1} tehtavat={props.tehtavat1} /></p>
+            <p><Osa osa={props.osa2} tehtavat={props.tehtavat2} /></p>
+            <p><Osa osa={props.osa3} tehtavat={props.tehtavat3} /></p>
+        </div>
+    )
+}
+
+const Osa = (props) => {
+    return(
+        <div>
             <p>{props.osa} {props.tehtavat}</p>
         </div>
     )
@@ -37,9 +47,9 @@ const App = () => {
     return (
         <div>
         <Otsikko otsikko={kurssi} />
-        <Sisalto osa={osa1} tehtavat={tehtavia1} />
-        <Sisalto osa={osa2} tehtavat={tehtavia2} />
-        <Sisalto osa={osa3} tehtavat={tehtavia3} />
+        <Sisalto osa1={osa1} tehtavat1={tehtavia1} 
+        osa2={osa2} tehtavat2={tehtavia2} 
+        osa3={osa3} tehtavat3={tehtavia3} />     
         <Yhteensa t1={tehtavia1} t2={tehtavia2} t3={tehtavia3} />
         </div>
     )
