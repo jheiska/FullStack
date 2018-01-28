@@ -11,11 +11,18 @@ const Display = ({hyva, neutraali, huono}) => (
         huono={huono}
     />
 </div>
-  
 )
 
 const Statistics = ({hyva, neutraali, huono}) => {
-   return (
+    if (hyva === 0 && neutraali === 0 && huono === 0){
+       return (
+           <div>
+           <p>Ei yhtään palautetta annettu</p> 
+           </div>
+       )
+    } else {
+   
+    return (
     <div>
         <Statistic 
             stat = {'hyvia'}
@@ -42,7 +49,8 @@ const Statistics = ({hyva, neutraali, huono}) => {
             huono={huono}
         />
     </div>
-   )
+    )
+    }
 }
 
 const Statistic = ({stat, hyva, neutraali, huono}) => {
