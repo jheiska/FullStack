@@ -24,76 +24,69 @@ const Statistics = ({hyva, neutraali, huono}) => {
    
     return (
     <div>
-        <Statistic 
-            stat = {'hyvia'}
-            hyva={hyva}
-        />
-        <Statistic
-            stat = {'neutraaleja'}
-            neutraali={neutraali}
-        />
-        <Statistic
-            stat = {'huonoja'}
-            huono ={huono}
-        /> 
-        <Statistic
-            stat = {'keskiarvo'}
-            hyva={hyva} 
-            neutraali={neutraali}
-            huono={huono}
-        />
-        <Statistic 
-            stat = {'positiivisia'}
-            hyva={hyva} 
-            neutraali={neutraali}
-            huono={huono}
-        />
+        <table>
+            <tbody>
+            <Statistic 
+                stat = {'hyvia'}
+                hyva={hyva}
+            />
+            <Statistic
+                stat = {'neutraaleja'}
+                neutraali={neutraali}
+            />
+            <Statistic
+                stat = {'huonoja'}
+                huono ={huono}
+            /> 
+            <Statistic
+                stat = {'keskiarvo'}
+                hyva={hyva} 
+                neutraali={neutraali}
+                huono={huono}
+            />
+            <Statistic 
+                stat = {'positiivisia'}
+                hyva={hyva} 
+                neutraali={neutraali}
+                huono={huono}
+            />
+            </tbody>
+        </table>
     </div>
     )
     }
 }
 
-const Statistic = ({stat, hyva, neutraali, huono}) => {
-    
+const Statistic = ({stat, hyva, neutraali, huono}) => {  
     if (stat === 'keskiarvo') {
         return (
-        <div>
         <Keskiarvo hy={hyva} 
         ne={neutraali}
         hu={huono}
         />
-        </div>
         )
     } else
     if (stat === 'positiivisia') {
         return (
-        <div>
         <Positiivisia hy={hyva} 
         ne={neutraali}
         hu={huono}
         />
-        </div>
         )
     } else
     if (stat === 'hyvia') {
         return (
-            <div>
-            <p>Hyviä: {hyva}</p>
-            </div>
+            <tr><td>Hyviä: {hyva}</td></tr>
         )
     } else
     if (stat === 'neutraaleja') {
         return (
-            <div>
-            <p>Neutraaleja: {neutraali}</p>
-            </div>
+            <tr><td>Neutraaleja: {neutraali}</td></tr>
         )
     } else
     if (stat === 'huonoja') {
         return (
-            <div>
-            <p>Huonoja: {huono}</p>
-            </div>
+            <tr><td>Huonoja: {huono}</td></tr>
         )
     }
 
@@ -107,19 +100,18 @@ const Button = ({ handleClick, text }) => (
 
 const Keskiarvo = ({ hy, hu, ne }) => {    
     return(
-        <div>
-            <p>Keskiarvo: {Math.round((hy - hu) / (hy + hu + ne) * 10) / 10}</p>
-        </div>
+        <tr><td>
+            Keskiarvo: {Math.round((hy - hu) / (hy + hu + ne) * 10) / 10}
+        </td></tr>
 )    
 }
 
 const Positiivisia = ({ hy, hu, ne }) => {
     return(
-        <div>
-            <p>Positiivisia: {Math.round(hy / (hy + hu + ne) * 1000) / 10} %</p>
-        </div>
+        <tr><td>
+        Positiivisia: {Math.round(hy / (hy + hu + ne) * 1000) / 10} %
+        </td></tr>
 )   
-
 }
 
 
