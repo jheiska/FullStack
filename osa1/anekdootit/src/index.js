@@ -29,10 +29,15 @@ class App extends React.Component {
         this.setState({pisteet: kopio})
     }
 
+    suurinPistemaara = () => {
+        var eniten = this.state.pisteet.indexOf(Math.max(...this.state.pisteet))
+        return eniten
+        }
+
     render() {
       return (
         <div>
-            <p>Satunnainen anekdootti:</p>
+            <h2>Satunnainen anekdootti:</h2>
             <p>{this.props.anecdotes[this.state.selected]}</p>
             <p>Anekdootin pisteet: {this.state.pisteet[this.state.selected]}</p>
             <Button handleClick={this.paivitaTila(Math.floor(Math.random() * this.props.anecdotes.length))}
@@ -43,7 +48,10 @@ class App extends React.Component {
             />
             <Button handleClick={this.pisteAnekdootille(this.state.selected)}
                     text="Anna piste tälle anekdootille"
-            />        
+            />
+            <h2>Eniten pisteitä saanut anekdootti:</h2>
+            <p>{this.props.anecdotes[this.suurinPistemaara()]}</p>
+
         </div>
       )
     }
