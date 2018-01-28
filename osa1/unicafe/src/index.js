@@ -132,10 +132,19 @@ class App extends React.Component {
             huono: 0
         }
     }
-        paivitaHyva = (arvo) => () => this.setState({ hyva: arvo})
-        paivitaNeutraali = (arvo) => () => this.setState({neutraali: arvo})
-        paivitaHuono = (arvo) => () => this.setState({huono: arvo})
-    
+      
+        paivitaTila = (tila, arvo) => () => {
+            if (tila === 'hyva') {
+                this.setState({hyva: arvo})
+            }
+            if (tila === 'neutraali') {
+                this.setState({neutraali: arvo})
+            }
+            if (tila === 'huono') {
+                this.setState({huono: arvo})
+            }
+        }
+
         render() {
             return (
                 <div>
@@ -146,15 +155,18 @@ class App extends React.Component {
                 />
               
                 <Button
-                    handleClick={this.paivitaHyva(this.state.hyva + 1)}
+                    handleClick={this.paivitaTila('hyva',
+                        (this.state.hyva + 1))}
                     text="Hyvä"
                 />
                 <Button
-                    handleClick={this.paivitaNeutraali(this.state.neutraali + 1)}
+                    handleClick={this.paivitaTila('neutraali', 
+                        (this.state.neutraali + 1))}
                     text="Neutraali"
                 />
                 <Button
-                    handleClick={this.paivitaHuono(this.state.huono + 1)}
+                    handleClick={this.paivitaTila('huono', 
+                        (this.state.huono + 1))}
                     text="Huono"
                 />  
                 
