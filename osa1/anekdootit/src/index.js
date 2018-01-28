@@ -11,13 +11,22 @@ class App extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        selected: 0
+        selected: 0,
+        pisteet: [0, 0, 0, 0, 0, 0]
       }
     }
-  
-    randomoiTila = () => () => {
-        var random = Math.floor(Math.random() * this.props.anecdotes.length)
-        this.setState({selected: random})
+
+    paivitaTila = (uusitila) => () => {
+        if (uusitila < 6){
+        this.setState({selected: uusitila})
+    } else
+        this.setState({selected: 0})
+    }
+
+    pisteAnekdootille = (anekdootti) => () => {
+        const kopio = [...this.state.pisteet]
+        kopio[anekdootti] += 1
+        this.setState({pisteet: kopio})
     }
 
     render() {
@@ -25,10 +34,16 @@ class App extends React.Component {
         <div>
             <p>Satunnainen anekdootti:</p>
             <p>{this.props.anecdotes[this.state.selected]}</p>
-            <Button
-                    handleClick={this.randomoiTila()}
+            <p>Anekdootin pisteet: {this.state.pisteet[this.state.selected]}</p>
+            <Button handleClick={this.paivitaTila(Math.floor(Math.random() * this.props.anecdotes.length))}
                     text="Uusi random anekdootti"
-            />    
+            />
+            <Button handleClick={this.paivitaTila(this.state.selected+1)} 
+                    text="Seuraava anekdootti"
+            />
+            <Button handleClick={this.pisteAnekdootille(this.state.selected)}
+                    text="Anna piste tälle anekdootille"
+            />        
         </div>
       )
     }
