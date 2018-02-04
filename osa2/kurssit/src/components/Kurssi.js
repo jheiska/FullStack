@@ -3,10 +3,9 @@ import React from 'react'
 // import Sisalto from './Sisalto'
 
 
-const Kurssi = ( {kurssi} ) => {
-    const osat = kurssi.osat
+const Kurssi = ({kurssi}) => {
     const lista = () => 
-        osat.map(osa => <li key={osa.id}>{osa.nimi} {osa.tehtavia}</li>)
+        kurssi.osat.map(osa => <li key={osa.id}>{osa.nimi} {osa.tehtavia}</li>)
     //const lista = () => <Sisalto sisalto={osat} />
     
     return (
@@ -17,9 +16,16 @@ const Kurssi = ( {kurssi} ) => {
             <ul>
             {lista()}
             </ul>
+            <div>
+            <p>Yhteensä {TehtaviaYhteensa(kurssi)} tehtavaa</p>
+            </div>
         </div>
     )
 }
+
+const TehtaviaYhteensa = kurssi => kurssi.osat.reduce(function(sum, osat){
+    return (sum + osat.tehtavia)
+}, 0)
 
 /*
 const Sisalto = ({ osat }) => { 
@@ -34,6 +40,4 @@ const Sisalto = ({ osat }) => {
 }
 */
 
-
-
-export default Kurssi;
+export default Kurssi
