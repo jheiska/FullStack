@@ -23,7 +23,7 @@ const Kurssi = ({kurssi}) => {
     )
 }
 
-const TehtaviaYhteensa = kurssi => kurssi.osat.reduce(function(sum, osat){
+const TehtaviaYhteensa = (kurssi) => kurssi.osat.reduce(function(sum, osat){
     return (sum + osat.tehtavia)
 }, 0)
 
