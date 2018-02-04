@@ -1,25 +1,9 @@
 import React from 'react'
+// import Osa from './Osa'
 
+// yhyy ei toimi :(
 
-const Osa = ({ props }) => {
-    const nimi = props.nimi
-    const tehtavat = props.tehtavat
-    return(
-            <li>{nimi} {tehtavat}</li>
-    )
-}
-
-const Sisalto = ({ osat }) => { 
-    const lista = () => {
-        osat.map(osa => 
-    <Osa key={osa.id} 
-    nimi={osa.nimi} 
-    tehtavat={osa.tehtavat}/>
-    )
-}
-    return(
-            lista()
-    )
-}
+const Sisalto = (kurssi) => 
+        kurssi.osat.map(osa => <li key={osa.id}>{osa.nimi} {osa.tehtavia}</li>)
 
 export default Sisalto;

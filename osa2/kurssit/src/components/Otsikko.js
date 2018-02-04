@@ -1,9 +1,5 @@
 import React from 'react';
 
-const Otsikko = ({props}) => {
-    return(
-        <h1>{props.nimi}</h1>
-    )
-}
+const Otsikko = (kurssi) => <h1>{kurssi.nimi}</h1>
 
 export default Otsikko
