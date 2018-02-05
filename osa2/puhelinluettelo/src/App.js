@@ -61,6 +61,18 @@ componentDidMount() {
       this.setState({ limiter: event.target.value})
     }
 
+    deleteEntry = (id) => {
+      return () => {
+      if (window.confirm('Haluatko varmasti poistaa?')){
+        personService
+        .deleteEnt(id)
+        .then(this.setState({
+          persons: this.state.persons.filter(p => p.id !== id)
+        }))
+      }
+      }
+    }
+
     
 
   render() {
@@ -100,7 +112,8 @@ componentDidMount() {
           </div>
         </form>
         <h2>Numerot</h2>
-        {personsToShow.map(person => <Entry key={person.name} person={person} />)}
+        {personsToShow.map(person => 
+        <Entry key={person.name} person={person} deleteEntry={this.deleteEntry(person.id)} />)}
       </div>
     )
   }
