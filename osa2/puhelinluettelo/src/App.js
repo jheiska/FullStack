@@ -11,23 +11,30 @@ class App extends React.Component {
     }
   }
 
+  names = () => (this.state.persons.map(person => person.name))
+
+
   addPerson = (event) => {
     event.preventDefault()
+    
+    if (!this.names().includes(this.state.newName)) {
+
     const person = {
       name: this.state.newName
     }   
 
+    
     const persons = this.state.persons.concat(person)
-
+    
     this.setState({
       persons: persons,
       newName: ''
     })
-
     }
+    }
+    
 
     handleNameChange = (event) => {
-      console.log(event.target.value)
       this.setState({ newName: event.target.value })
     } 
 
