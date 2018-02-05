@@ -1,6 +1,7 @@
 import React from 'react';
 import Entry from './components/Entry'
 import axios from 'axios'
+import personService from './services/persons'
 
 class App extends React.Component {
   constructor(props) {
@@ -34,13 +35,11 @@ componentDidMount() {
       number: this.state.newNumber
     }   
     
-    const persons = this.state.persons.concat(person)
-    
-    axios
-      .post('http://localhost:3001/persons', person)
-      .then(response => {
+    personService
+      .create(person)
+      .then(newPerson => {
         this.setState({
-          persons: this.state.persons.concat(response.data),
+          persons: this.state.persons.concat(newPerson),
           newName: '',
           newNumber: ''
         })
