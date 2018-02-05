@@ -1,28 +1,28 @@
 import React from 'react';
 import Entry from './components/Entry'
+import axios from 'axios'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      persons: [
-        { name: 'Arto Hellas',
-          number: '666' },
-          { name: 'Arto Artsila',
-          number: '667' },
-          { name: 'Kalle Prospektori',
-          number: '1234' },
-          { name: 'Kalle Anka',
-          number: '313' }
-      ],
+      persons: [],
       newName: '',
       newNumber: '',
       limiter: ''
     }
   }
 
-  names = () => (this.state.persons.map(person => person.name))
+componentDidMount() {
+  axios
+    .get('http://localhost:3001/persons')
+    .then(response=> {
+      this.setState( {persons: response.data})
+    })
+  }
 
+
+  names = () => (this.state.persons.map(person => person.name))
 
   addPerson = (event) => {
     event.preventDefault()
