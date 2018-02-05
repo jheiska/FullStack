@@ -4,6 +4,26 @@
       "name": "kalle",
       "number": "666",
       "id": 3
+    },
+    {
+      "name": "juu",
+      "number": "123",
+      "id": 6
+    },
+    {
+      "name": "uus",
+      "number": "111",
+      "id": 7
+    },
+    {
+      "name": "lisäys",
+      "number": "123",
+      "id": 9
+    },
+    {
+      "name": "uusi",
+      "number": "11",
+      "id": 10
     }
   ]
 }

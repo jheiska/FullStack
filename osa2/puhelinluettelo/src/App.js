@@ -1,5 +1,6 @@
 import React from 'react';
 import Entry from './components/Entry'
+import Notification from './components/Notification'
 import axios from 'axios'
 import personService from './services/persons'
 
@@ -10,7 +11,8 @@ class App extends React.Component {
       persons: [],
       newName: '',
       newNumber: '',
-      limiter: ''
+      limiter: '',
+      alert: null
     }
   }
 
@@ -41,10 +43,14 @@ componentDidMount() {
         this.setState({
           persons: this.state.persons.concat(newPerson),
           newName: '',
-          newNumber: ''
+          newNumber: '',
+          alert: 'puhelinnumero lisätty onnistuneesti'
         })
       })
     
+    setTimeout(() => {
+      this.setState({alert: null})
+    }, 5000)
     }
   }
     
@@ -67,11 +73,18 @@ componentDidMount() {
         personService
         .deleteEnt(id)
         .then(this.setState({
-          persons: this.state.persons.filter(p => p.id !== id)
+          persons: this.state.persons.filter(p => p.id !== id),
+          alert: 'poistettu!'
         }))
+        setTimeout(() => {
+          this.setState({alert: null})
+        }, 5000)
+        }
       }
-      }
+      
     }
+
+   
 
     
 
@@ -85,6 +98,7 @@ componentDidMount() {
         return (
       <div>
         <h2>Puhelinluettelo</h2>
+        <Notification message={this.state.alert}/>
         <div>
             rajaa näytettäviä: 
             <input 
