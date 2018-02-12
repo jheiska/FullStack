@@ -18,7 +18,7 @@ class App extends React.Component {
 
 componentDidMount() {
   axios
-    .get('http://localhost:3001/persons')
+    .get('http://localhost:3001/api/persons')
     .then(response=> {
       this.setState( {persons: response.data})
     })
