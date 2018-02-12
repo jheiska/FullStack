@@ -3,6 +3,8 @@ import Entry from './components/Entry'
 import Notification from './components/Notification'
 import axios from 'axios'
 import personService from './services/persons'
+const baseUrl = '/api/persons'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class App extends React.Component {
 
 componentDidMount() {
   axios
-    .get('http://localhost:3001/api/persons')
+    .get(baseUrl)
     .then(response=> {
       this.setState( {persons: response.data})
     })
