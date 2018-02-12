@@ -26,7 +26,6 @@ componentDidMount() {
     })
   }
 
-
   names = () => (this.state.persons.map(person => person.name))
 
   addPerson = (event) => {
