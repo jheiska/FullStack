@@ -1,7 +1,10 @@
 import React from 'react'
 import Blog from './components/Blog'
+import AddForm from './components/AddForm'
+import Togglable from './components/Togglable'
 import blogService from './services/blogs'
 import loginService from './services/login'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -14,7 +17,8 @@ class App extends React.Component {
       showAll: true,
       username: '',
       password: '',
-      user: null
+      user: null,
+      alert: null
     }
   }
 
@@ -34,10 +38,6 @@ class App extends React.Component {
 
   handleLoginFieldChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
-  }
-
-  handleBlogChange = (event) => {
-    this.setState({ newBlog: event.target.value })
   }
   
   handleLogout = () => {
@@ -83,6 +83,8 @@ class App extends React.Component {
         })
   }
 
+
+
   render() {
     if (this.state.user === null) {
       return (
@@ -122,41 +124,15 @@ class App extends React.Component {
           <Blog key={blog._id} blog={blog} />
         )}
 
-        <h2>create new</h2>
-
-        <form onSubmit={this.addBlog}>
-          
-        <div>
-        title
-          <input
-            type="text"
-            name="newBlogTitle"
-            value={this.state.newBlogTitle}
-            onChange={this.handleLoginFieldChange}
-          />
-        </div>
-        <div>
-          author
-          <input
-            type="text"
-            name="newBlogAuthor"
-            value={this.state.newBlogAuthor}
-            onChange={this.handleLoginFieldChange}
-          />
-          </div>
-          <div>
-          url
-          <input
-            type="text"
-            name="newBlogUrl"
-            value={this.state.newBlogUrl}
-            onChange={this.handleLoginFieldChange}
-          />
-          </div>
-        <button type="submit">create</button>
-    </form>
-
-
+      <Togglable buttonLabel="add blog">
+        <AddForm
+        handleLoginFieldChange={this.handleLoginFieldChange}
+        addBlog={this.addBlog}
+        title={this.state.newBlogTitle}
+        author={this.state.newBlogAuthor}
+        url={this.state.newBlogUrl}   
+        />
+      </Togglable>
       </div>
     )
   }
