@@ -1,5 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import reducer from './reducer'
+import {createStore} from 'redux'
+
+
 
 const Display = ({hyva, neutraali, huono}) => (
 <div>
@@ -115,51 +119,72 @@ const Positiivisia = ({ hy, hu, ne }) => {
 }
 
 
+const store = createStore(reducer)
+
 class App extends React.Component {
     constructor(){
         super()
+  /*
         this.state = {
             hyva : 0,
             neutraali: 0,
             huono: 0
-        }
+     }
+     */
     }
+
+
       
-        paivitaTila = (tila, arvo) => () => {
+        paivitaTila = (tila) => () => {
             if (tila === 'hyva') {
-                this.setState({hyva: arvo})
+ //               this.setState({hyva: arvo})
+                store.dispatch({type: 'GOOD'})
             }
             if (tila === 'neutraali') {
-                this.setState({neutraali: arvo})
+                store.dispatch({type: 'OK'})
+//                this.setState({neutraali: arvo})
             }
             if (tila === 'huono') {
-                this.setState({huono: arvo})
+                store.dispatch({type: 'BAD'})
+//                this.setState({huono: arvo})
+            }
+            if (tila === 'nollaa') {
+                store.dispatch({type: 'ZERO'})
+/*
+                this.setState({
+                    hyva : 0,
+                    neutraali: 0,
+                    huono: 0
+                })
+*/                
             }
         }
 
         render() {
+
             return (
                 <div>
                 <Display 
-                    hyva={this.state.hyva}
-                    neutraali={this.state.neutraali}
-                    huono={this.state.huono} 
+                    hyva={store.getState().good}
+                    neutraali={store.getState().ok}
+                    huono={store.getState().bad} 
                 />
               
                 <Button
-                    handleClick={this.paivitaTila('hyva',
-                        (this.state.hyva + 1))}
+                    handleClick={this.paivitaTila('hyva')}
                     text="Hyvä"
                 />
                 <Button
-                    handleClick={this.paivitaTila('neutraali', 
-                        (this.state.neutraali + 1))}
+                    handleClick={this.paivitaTila('neutraali')}
                     text="Neutraali"
                 />
                 <Button
-                    handleClick={this.paivitaTila('huono', 
-                        (this.state.huono + 1))}
+                    handleClick={this.paivitaTila('huono')}
                     text="Huono"
+                />  
+                <Button
+                    handleClick={this.paivitaTila('nollaa')}
+                    text="Nollaa"
                 />  
                 
               </div>
@@ -169,4 +194,9 @@ class App extends React.Component {
 
 }
 
+const renderApp = () => {
 ReactDOM.render(<App />, document.getElementById('root'));
+}
+
+renderApp()
+store.subscribe(renderApp)
