@@ -88,10 +88,10 @@ class App extends React.Component {
   render() {
     if (this.state.user === null) {
       return (
-        <div>
+        <div className="wrapper">
           <h2>Log in to application</h2>
         <form onSubmit={this.login}>
-          <div>
+          <div className="user">
           username:
           <input
             type="text"
@@ -100,7 +100,7 @@ class App extends React.Component {
             onChange={this.handleLoginFieldChange}
           />
           </div>
-          <div>
+          <div className="pass">
           password:
           <input
             type="password"

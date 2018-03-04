@@ -1,4 +1,5 @@
 let token = null
+
 const blogs = [
 {
 __v:0,
@@ -21,4 +22,4 @@ const getAll = () => {
     return Promise.resolve(blogs)
   }
   
-  export default { getAll, blogs }
+export default { getAll, blogs }
