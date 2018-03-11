@@ -1,18 +1,33 @@
 //import Notification from '../components/Notification'
 
 const initialState = [
-  'Done!'
+  'Welcome to the anecdote app!'
 ]
 
 const reducer = (store = initialState, action) => {
-  if (action.type==='VOTED') {
-    return store
+  if (action.type==='VOTE') {
+    return 'Voted!'
   }
-  if (action.type==='CREATED'){
-    return store
+  if (action.type==='CREATE'){
+    return 'Created!'
+  }
+  if (action.type==='CLEAR'){
+    return null
   }
 
   return store
 }
+
+export const vote = () => {
+  return {
+    type: 'VOTE'
+  }
+}
+
+export const create = () => {
+  return {
+    type: 'CREATE'
+  }
+} 
 
 export default reducer

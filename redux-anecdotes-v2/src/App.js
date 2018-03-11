@@ -5,8 +5,17 @@ import AnecdoteList from './components/AnecdoteList'
 
 class App extends React.Component {
 
+  notification = () => {
+    setTimeout(() => {
+      this.props.store.dispatch( {type: 'CLEAR'} )
+    }, 5000)
+  }
+
+
   render() {
+    this.notification()
     const anecdotes = this.props.store.getState()
+
     return (
       <div>
         <h1>Programming anecdotes</h1>
